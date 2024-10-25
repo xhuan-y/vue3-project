@@ -12,6 +12,10 @@ const sessionItem = reactive({
 
 const session = reactive(JSON.parse(localStorage.getItem("session")) || []);
 
+const setSession = (session) => {
+  localStorage.setItem("session", JSON.stringify(session));
+};
+
 const onUpdate = () => {
   if (sessionItem.title) {
     if (sessionItem.id) {
@@ -31,7 +35,7 @@ const onUpdate = () => {
     return;
   }
 
-  localStorage.setItem("session", JSON.stringify(session));
+  setSession(session);
   onQuit();
 };
 
@@ -48,13 +52,13 @@ const onDelete = (id) => {
   }
   const index = session.findIndex((item) => item.id === id);
   session.splice(index, 1);
-  localStorage.setItem("session", JSON.stringify(session));
+  setSession(session);
 };
 
 const onEdit = (id) => {
   dialogVisible.value = true;
   sessionItem.id = id;
-  const index = session.findIndex((item) => item.id === sessionItem.id);
+  const index = session.findIndex((item) => item.id === id);
   sessionItem.title = session[index].title;
 };
 </script>
