@@ -5,7 +5,6 @@ import { reactive, computed, useTemplateRef } from "vue";
 const formInstance = useTemplateRef("formInstance");
 
 const formData = defineModel();
-
 const { formItems } = defineProps(["formItems"]);
 
 let form = useForm(formItems);
@@ -67,13 +66,23 @@ const submit = async (callback) => {
   return formData1;
 };
 
+const resetFields = () => {
+  formInstance.value.resetFields();
+};
+
 defineExpose({
   submit,
+  resetFields,
 });
 </script>
 
 <template>
-  <el-form ref="formInstance" :model="form.data" :rules="form.rules">
+  <el-form
+    ref="formInstance"
+    label-width="80"
+    :model="form.data"
+    :rules="form.rules"
+  >
     <template v-for="item in form.items" :key="item.field">
       <FormItemRender
         :item="item"
