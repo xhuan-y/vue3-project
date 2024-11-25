@@ -21,10 +21,18 @@ const uiType = computed(() => item.uiType);
       v-model="formItemValue"
       :placeholder="item.placeholder"
     >
-      <template v-for="(option, i) in item.options" :key="i">
+      <template v-for="option in item.options" :key="option.value">
         <el-option :label="option.label" :value="option.value"></el-option>
       </template>
     </el-select>
+
+    <el-checkbox-group v-else-if="uiType == 'checkbox'" v-model="formItemValue">
+      <template v-for="option in item.options" :key="option.value">
+        <el-checkbox :value="option.value">
+          {{ option.label }}
+        </el-checkbox>
+      </template>
+    </el-checkbox-group>
   </el-form-item>
 </template>
 

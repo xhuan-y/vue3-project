@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import FormPage from "@/views/FormPage.vue";
+import DynamicFormPage from "@/views/DynamicFormPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: FormPage,
+      component: DynamicFormPage,
     },
     {
       path: "/session",

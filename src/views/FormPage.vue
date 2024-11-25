@@ -29,6 +29,26 @@ const formItems = [
     ],
     placeholder: "请选择平台",
   },
+  {
+    label: "支付方式",
+    field: "payType",
+    required: true,
+    uiType: "checkbox",
+    options: [
+      {
+        label: "微信",
+        value: 1,
+      },
+      {
+        label: "支付宝",
+        value: 2,
+      },
+      {
+        label: "银行卡",
+        value: 3,
+      },
+    ],
+  },
 ];
 
 const formInstance = useTemplateRef("formInstance");
@@ -49,7 +69,6 @@ const submit = () => {
     ></FormRender>
     <el-button @click="submit">提交信息</el-button>
     <el-button @click="formInstance.resetFields()">重置</el-button>
-    <p>{{ formData }}</p>
   </div>
 </template>
 
